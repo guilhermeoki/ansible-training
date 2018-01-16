@@ -1,0 +1,3 @@
+- git: https://github.com/guilhermeoki/ansible-example-common.git
+  version: master
+  dst: ./roles/example.common/
