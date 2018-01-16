@@ -7,6 +7,6 @@
 - git: https://github.com/guilhermeoki/ansible-example-epel.git
   version: master
   dst: roles/example.epel/
-- git: https://github.com/guilhermeoki/ansible-example-app
+- git: https://github.com/guilhermeoki/ansible-example-app.git
   version: master
   dst: roles/example.app/
