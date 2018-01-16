@@ -10,3 +10,16 @@
 - git: https://github.com/guilhermeoki/ansible-example-app.git
   version: master
   dst: roles/example.app/
+- git: https://github.com/geerlingguy/ansible-role-apache.git
+  version: master
+  dst: roles/geerlingguy.apache/
+- git: https://github.com/geerlingguy/ansible-role-php.git
+  version: master
+  dst: roles/geerlingguy.php/
+- git: https://github.com/geerlingguy/ansible-role-apache-php-fpm.git
+  version: master
+  dst: roles/geerlingguy.apache-php-fpm/
+- git: https://github.com/geerlingguy/ansible-role-haproxy.git
+  version: master
+  dst: roles/geerlingguy.haproxy/
+  
