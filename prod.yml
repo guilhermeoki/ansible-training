@@ -1,0 +1,51 @@
+---
+- name: Common tasks to all servers
+  hosts: all
+  become: true
+  roles:
+    - example.epel
+    - example.common
+  tags: common
+
+- name: Configure database servers
+  hosts: db
+  become: true
+  vars:
+  roles:
+    - example.mariadb
+
+- name: Configure webservers
+  hosts: webserver
+  become: true
+  vars:
+  pre_tasks:
+    - name: Remove nginx to avoid conflict with apache
+      package: name=nginx state=absent
+  roles:
+    - geerlingguy.apache
+    - geerlingguy.php
+    - geerlingguy.apache-php-fpm
+    - example.app
+
+- name: Configure haproxy
+  hosts: lb
+  become: true
+  vars:
+    haproxy_backend_servers:
+      - name: m1
+        address: "{{ hostvars['m1'].ansible_eth1.ipv4.address }}:80"
+      - name: m2
+        address: "{{ hostvars['m2'].ansible_eth1.ipv4.address }}:80"
+  roles:
+    - geerlingguy.haproxy
+  tasks:
+    - name: Open http port on firewall
+      firewalld:
+        service: http
+        permanent: true
+        state: enabled
+      notify: reload firewall
+      tags: firewall
+  handlers:
+    - name: reload firewall
+      command: /bin/firewall-cmd --reload
