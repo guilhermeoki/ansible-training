@@ -1,3 +1,12 @@
 - git: https://github.com/guilhermeoki/ansible-example-common.git
   version: master
-  dst: ./roles/example.common/
+  dst: roles/example.common/
+- git: https://github.com/guilhermeoki/ansible-example-mariadb.git
+  version: master
+  dst: roles/example.mariadb/
+- git: https://github.com/guilhermeoki/ansible-example-epel.git
+  version: master
+  dst: roles/example.epel/
+- git: https://github.com/guilhermeoki/ansible-example-app
+  version: master
+  dst: roles/example.app/
