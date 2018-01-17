@@ -102,3 +102,6 @@ ENV/
 
 # ansible
 roles/
+
+# vagrant
+.vagrant/
