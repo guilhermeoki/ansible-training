@@ -2,11 +2,11 @@
 
 A basic training project for ansible
 
-# Provisioning environment
+# Provisioning environment using VirtualBox
 
-vagrant up
+vagrant up --provider=virtualbox
 
-# Acessing Ansible control plane
+# Acessing Ansible host
 
 vagrant ssh bastionhost
 
@@ -14,10 +14,19 @@ vagrant ssh bastionhost
 
 Ansible has an option to run without playbooks. You just need to enter with module, optional module argument and inventory.
 
-## Sending ping in all production environment
+### Ping all production environment
 
+```
 ansible all -m ping -i inventory/prod/inventory.ini
+```
 
-## Sending ping in all staging environment
+# Running Ansible playbooks
 
-ansible all -m ping -i inventory/staging/inventory.ini
+The powerful way to run ansible is using playbooks. Playbooks are composed of one or more plays. The goal of a play is to map a group of hosts to some well defined roles, represented by things ansible calls tasks.
+
+### Install and configure all the environment
+
+```
+ansible-playbook prod.yml -i inventory/prod/inventory.ini
+```
+
